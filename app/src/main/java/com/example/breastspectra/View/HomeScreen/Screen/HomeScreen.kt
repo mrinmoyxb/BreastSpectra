@@ -23,6 +23,6 @@ fun HomeScreen(){
         .padding(10.dp)
     ){
         Spacer(modifier = Modifier.height(30.dp))
-        HeadingCard("Breast Cancer Detection")
+        HeadingCard("Breast Cancer", "Detection")
     }
 }
