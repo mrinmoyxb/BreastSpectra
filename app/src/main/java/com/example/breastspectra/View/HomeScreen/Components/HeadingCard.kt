@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.example.breastspectra.R
 
 @Composable
-fun HeadingCard(text1: String, text2: String){
+fun CardHeading(text1: String, text2: String){
     Card(
         modifier = Modifier
             .fillMaxWidth()
