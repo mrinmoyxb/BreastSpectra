@@ -1,6 +1,7 @@
 package com.example.breastspectra.View.HomeScreen.Components
 
 import android.view.RoundedCorner
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,18 +39,17 @@ fun InputField(heading: String, fontSize: Int, fontWeight: FontWeight) {
 
     Text(heading, fontSize = fontSize.sp, color = Color.Black,
         fontWeight = fontWeight)
-
     TextField(value = value, onValueChange = { value = it }, shape = RoundedCornerShape(20.dp),
         colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color(0xFFFFB5DA),
+                containerColor = Color.Transparent,
                 cursorColor = Color.White,
-                focusedIndicatorColor = Color(0xFFFFB5DA),
+                focusedIndicatorColor = Color.White,
                 unfocusedIndicatorColor = Color.White
         ),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Number
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
     )
 
 
