@@ -17,7 +17,7 @@ import com.example.breastspectra.R
 import com.example.breastspectra.View.HomeScreen.Components.CardHeading
 import com.example.breastspectra.View.HomeScreen.Components.InputField
 
-@Preview(showBackground = true)
+
 @Composable
 fun HomeScreen(){
     Column(modifier = Modifier
@@ -31,25 +31,43 @@ fun HomeScreen(){
         LazyColumn(){
             item {
                 Spacer(modifier = Modifier.height(20.dp))
-                InputField(heading = "Parameter 1", 20, FontWeight.SemiBold)
+                InputField(heading = "Radius mean", 20, FontWeight.SemiBold)
 
                 Spacer(modifier = Modifier.height(20.dp))
-                InputField(heading = "Parameter 1", 20, FontWeight.SemiBold)
+                InputField(heading = "Texture mean", 20, FontWeight.SemiBold)
 
                 Spacer(modifier = Modifier.height(20.dp))
-                InputField(heading = "Parameter 1", 20, FontWeight.SemiBold)
+                InputField(heading = "Perimeter mean", 20, FontWeight.SemiBold)
 
                 Spacer(modifier = Modifier.height(20.dp))
-                InputField(heading = "Parameter 1", 20, FontWeight.SemiBold)
+                InputField(heading = "Area mean", 20, FontWeight.SemiBold)
 
                 Spacer(modifier = Modifier.height(20.dp))
-                InputField(heading = "Parameter 1", 20, FontWeight.SemiBold)
+                InputField(heading = "Smoothness mean", 20, FontWeight.SemiBold)
 
                 Spacer(modifier = Modifier.height(20.dp))
-                InputField(heading = "Parameter 1", 20, FontWeight.SemiBold)
+                InputField(heading = "Compactness mean ", 20, FontWeight.SemiBold)
 
                 Spacer(modifier = Modifier.height(20.dp))
-                InputField(heading = "Parameter 1", 20, FontWeight.SemiBold)
+                InputField(heading = "Concavity Mean ", 20, FontWeight.SemiBold)
+
+                Spacer(modifier = Modifier.height(20.dp))
+                InputField(heading = "Concave points Mean ", 20, FontWeight.SemiBold)
+
+                Spacer(modifier = Modifier.height(20.dp))
+                InputField(heading = "Concave points Mean ", 20, FontWeight.SemiBold)
+
+                Spacer(modifier = Modifier.height(20.dp))
+                InputField(heading = "Symmetry Mean ", 20, FontWeight.SemiBold)
+
+                Spacer(modifier = Modifier.height(20.dp))
+                InputField(heading = "Fractal Dimension Mean ", 20, FontWeight.SemiBold)
+
+                Spacer(modifier = Modifier.height(20.dp))
+                InputField(heading = "Concave points Mean ", 20, FontWeight.SemiBold)
+
+                Spacer(modifier = Modifier.height(20.dp))
+                InputField(heading = "Concave points Mean ", 20, FontWeight.SemiBold)
             }
         }
 
