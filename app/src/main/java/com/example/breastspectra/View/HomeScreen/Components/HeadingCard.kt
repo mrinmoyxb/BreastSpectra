@@ -41,7 +41,7 @@ fun CardHeading(text1: String, text2: String){
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(colorResource(id = R.color.secondary), RoundedCornerShape(20.dp))
+                .background(colorResource(id = R.color.pink), RoundedCornerShape(20.dp))
                 .padding(12.dp)
         ){
             Row(){
@@ -50,10 +50,10 @@ fun CardHeading(text1: String, text2: String){
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
             ) {
-                Text(text1, fontSize = 30.sp, color = Color.White, fontWeight = FontWeight.Bold)
-                Text(text2, fontSize = 30.sp, color = Color.White, fontWeight = FontWeight.Medium, modifier = Modifier.offset(y=-10.dp))
-                Text("This is a machine learning model with 97% accuracy",
-                    fontSize = 18.sp, color = Color.White)
+                Text(text1, fontSize = 27.sp, color = Color.Black, fontWeight = FontWeight.Bold)
+                Text(text2, fontSize = 27.sp, color = Color.Black, fontWeight = FontWeight.Medium, modifier = Modifier.offset(y=-10.dp))
+                Text("A machine learning model that can predict your heart disease with 95% accuracy",
+                    fontSize = 17.sp, color = Color.White)
             }
                 Column(){
                     Image(painter = painterResource(id = R.drawable.breast_icon), contentDescription = "breast logo",
