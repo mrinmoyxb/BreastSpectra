@@ -125,6 +125,37 @@ class BreastCancerViewModel: ViewModel() {
     }
 
     fun resetButton(){
+        radius_mean.value = 0.0f
+        texture_mean.value = 0.0f
+        perimeter_mean.value = 0.0f
+        area_mean.value = 0.0f
+        smoothness_mean.value = 0.0f
+        compactness_mean.value = 0.0f
+        concavity_mean.value = 0.0f
+        concave_pts_mean.value = 0.0f
+        symmetry_mean.value = 0.0f
+        fractal_dim_mean.value = 0.0f
+        radius_se.value = 0.0f
+        texture_se.value = 0.0f
+        perimeter_se.value = 0.0f
+        area_se.value = 0.0f
+        smoothness_se.value = 0.0f
+        compactness_se.value = 0.0f
+        concavity_se.value = 0.0f
+        concave_pts_se.value = 0.0f
+        symmetry_se.value = 0.0f
+        fractal_dim_se.value = 0.0f
+        radius_worst.value = 0.0f
+        texture_worst.value = 0.0f
+        perimeter_worst.value = 0.0f
+        area_worst.value = 0.0f
+        smoothness_se.value = 0.0f
+        compactness_worst.value = 0.0f
+        concavity_worst.value = 0.0f
+        concave_pts_worst.value = 0.0f
+        symmetry_worst.value = 0.0f
+        fractal_dim_worst.value = 0.0f
+
         responseValue.value = "Generating Result"
         serverCode.value = "Waiting for server response"
     }
