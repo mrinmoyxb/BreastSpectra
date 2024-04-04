@@ -113,7 +113,8 @@ class BreastCancerViewModel: ViewModel() {
                     compactness_mean.value, concavity_mean.value, concave_pts_mean.value, symmetry_mean.value, fractal_dim_mean.value,
                     radius_se.value, texture_se.value, perimeter_se.value, area_se.value, smoothness_se.value, compactness_se.value, concavity_se.value,
                     concave_pts_se.value, symmetry_se.value, fractal_dim_se.value, radius_worst.value, texture_worst.value, perimeter_worst.value, area_worst.value,
-                    smoothness_se.value, compactness_worst.value, concavity_worst.value, concave_pts_worst.value, symmetry_worst.value, fractal_dim_worst.value)
+                    smoothness_worst.value, compactness_worst.value, concavity_worst.value, concave_pts_worst.value, symmetry_worst.value, fractal_dim_worst.value
+                )
 
             if (response.isSuccessful) {
                 responseValue.value = response.body()?.targetValue ?: "No data"

@@ -33,9 +33,10 @@ fun GenerateResult(navController: NavHostController, viewModel: BreastCancerView
         .fillMaxWidth(0.75f)
         .height(100.dp)
         .background(Color.Transparent)
-        .clickable { viewModel.postResponse()
-            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+        .clickable {
+            viewModel.postResponse()
             navController.navigate("resultScreen")
+            Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
         },
         shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(colorResource(id = R.color.secondary))

@@ -1,5 +1,6 @@
 package com.example.breastspectra.View.HomeScreen.Screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -18,7 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -27,7 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -37,6 +39,7 @@ import com.example.breastspectra.View.HomeScreen.Components.GenerateResult
 import com.example.breastspectra.View.HomeScreen.Components.ResetButton
 import com.example.breastspectra.ViewModel.BreastCancerViewModel
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewModel){
@@ -45,44 +48,104 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
         .background(colorResource(id = R.color.tertiary))
         .padding(10.dp)
     ){
-        var radius_mean by remember { mutableStateOf("") }
-        var texture_mean by remember { mutableStateOf("") }
-        var perimeter_mean by remember { mutableStateOf("") }
-        var area_mean by remember { mutableStateOf("") }
-        var smoothness_mean by remember { mutableStateOf("") }
-        var compactness_mean by remember { mutableStateOf("") }
-        var concavity_mean by remember { mutableStateOf("") }
-        var concave_pts_mean by remember { mutableStateOf("") }
-        var symmetry_mean by remember { mutableStateOf("") }
-        var fractal_dim_mean by remember { mutableStateOf("") }
-        var radius_se by remember { mutableStateOf("") }
-        var texture_se by remember { mutableStateOf("") }
-        var perimeter_se by remember { mutableStateOf("") }
-        var area_se by remember { mutableStateOf("") }
-        var smoothness_se by remember { mutableStateOf("") }
-        var compactness_se by remember { mutableStateOf("") }
-        var concavity_se by remember { mutableStateOf("") }
-        var concave_pts_se by remember { mutableStateOf("") }
-        var symmetry_se by remember { mutableStateOf("") }
-        var fractal_dim_se by remember { mutableStateOf("") }
-        var radius_worst by remember { mutableStateOf("") }
-        var texture_worst by remember { mutableStateOf("") }
-        var perimeter_worst by remember { mutableStateOf("") }
-        var area_worst by remember { mutableStateOf("") }
-        var smoothness_worst by remember { mutableStateOf("") }
-        var compactness_worst by remember { mutableStateOf("") }
-        var concavity_worst by remember { mutableStateOf("") }
-        var concave_pts_worst by remember { mutableStateOf("") }
-        var symmetry_worst by remember { mutableStateOf("") }
-        var fractal_dim_worst by remember { mutableStateOf("") }
+        var radius_mean  by remember { mutableStateOf("0")}
+        viewModel.radius_mean.value = radius_mean.toFloatOrNull() ?: 0f
 
+        var texture_mean by remember { mutableStateOf("0") }
+        viewModel.texture_mean.value = texture_mean.toFloatOrNull() ?: 0f
+
+        var perimeter_mean by remember { mutableStateOf("0") }
+        viewModel.perimeter_mean.value = perimeter_mean.toFloatOrNull() ?: 0f
+
+        var area_mean by remember { mutableStateOf("0") }
+        viewModel.area_mean.value = area_mean.toFloatOrNull() ?: 0f
+
+        var smoothness_mean by remember { mutableStateOf("0") }
+        viewModel.smoothness_mean.value = smoothness_mean.toFloatOrNull() ?: 0f
+
+        var compactness_mean by remember { mutableStateOf("0") }
+        viewModel.compactness_mean.value = compactness_mean.toFloatOrNull() ?: 0f
+
+        var concavity_mean by remember { mutableStateOf("0") }
+        viewModel.concavity_mean.value = concavity_mean.toFloatOrNull() ?: 0f
+
+        var concave_pts_mean by remember { mutableStateOf("0") }
+        viewModel.concave_pts_mean.value = concave_pts_mean.toFloatOrNull() ?: 0f
+
+        var symmetry_mean by remember { mutableStateOf("0") }
+        viewModel.symmetry_mean.value = symmetry_mean.toFloatOrNull() ?: 0f
+
+        var fractal_dim_mean by remember { mutableStateOf("0") }
+        viewModel.fractal_dim_mean.value = fractal_dim_mean.toFloatOrNull() ?: 0f
+
+        var radius_se by remember { mutableStateOf("0") }
+        viewModel.radius_se.value = radius_se.toFloatOrNull() ?: 0f
+
+        var texture_se by remember { mutableStateOf("0") }
+        viewModel.texture_se.value = texture_se.toFloatOrNull() ?: 0f
+
+        var perimeter_se by remember { mutableStateOf("0") }
+        viewModel.perimeter_se.value = perimeter_se.toFloatOrNull() ?: 0f
+
+        var area_se by remember { mutableStateOf("0") }
+        viewModel.area_se.value = area_se.toFloatOrNull() ?: 0f
+
+        var smoothness_se by remember { mutableStateOf("0") }
+        viewModel.smoothness_se.value = smoothness_se.toFloatOrNull() ?: 0f
+
+        var compactness_se by remember { mutableStateOf("0") }
+        viewModel.compactness_se.value = compactness_se.toFloatOrNull() ?: 0f
+
+        var concavity_se by remember { mutableStateOf("0") }
+        viewModel.concavity_se.value = concavity_se.toFloatOrNull() ?: 0f
+
+        var concave_pts_se by remember { mutableStateOf("0") }
+        viewModel.concave_pts_se.value = concave_pts_se.toFloatOrNull() ?: 0f
+
+        var symmetry_se by remember { mutableStateOf("0") }
+        viewModel.symmetry_se.value = symmetry_se.toFloatOrNull() ?: 0f
+
+        var fractal_dim_se by remember { mutableStateOf("0") }
+        viewModel.fractal_dim_se.value = fractal_dim_se.toFloatOrNull() ?: 0f
+
+        var radius_worst by remember { mutableStateOf("0") }
+        viewModel.radius_worst.value = radius_worst.toFloatOrNull() ?: 0f
+
+        var texture_worst by remember { mutableStateOf("0") }
+        viewModel.texture_worst.value = texture_worst.toFloatOrNull() ?: 0f
+
+        var perimeter_worst by remember { mutableStateOf("0") }
+        viewModel.perimeter_worst.value = perimeter_worst.toFloatOrNull() ?: 0f
+
+        var area_worst by remember { mutableStateOf("0") }
+        viewModel.area_worst.value = area_worst.toFloatOrNull() ?: 0f
+
+        var smoothness_worst by remember { mutableStateOf("0") }
+        viewModel.smoothness_worst.value = smoothness_worst.toFloatOrNull() ?: 0f
+
+        var compactness_worst by remember { mutableStateOf("0") }
+        viewModel.compactness_worst.value = compactness_worst.toFloatOrNull() ?: 0f
+
+        var concavity_worst by remember { mutableStateOf("0") }
+        viewModel.concavity_worst.value = concavity_worst.toFloatOrNull() ?: 0f
+
+        var concave_pts_worst by remember { mutableStateOf("0") }
+        viewModel.concave_pts_worst.value = concave_pts_worst.toFloatOrNull() ?: 0f
+
+        var symmetry_worst by remember { mutableStateOf("0") }
+        viewModel.symmetry_worst.value = symmetry_worst.toFloatOrNull() ?: 0f
+
+        var fractal_dim_worst by remember { mutableStateOf("0") }
+        viewModel.fractal_dim_worst.value = fractal_dim_worst.toFloatOrNull() ?: 0f
+
+        val result by viewModel.responseValue.collectAsState("")
+        val server by viewModel.serverCode.collectAsState("")
 
         Spacer(modifier = Modifier.height(30.dp))
         CardHeading(text1 = "Breast Cancer", text2 = "Detection")
         Spacer(modifier = Modifier.height(20.dp))
         LazyColumn(){
             item {
-
                 // 1. Radius Mean
                 Text("Radius Mean", fontSize = 20.sp, color = Color.Black,
                     fontWeight = FontWeight.SemiBold)
@@ -96,7 +159,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -113,7 +178,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -130,7 +197,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -147,7 +216,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -164,7 +235,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -181,7 +254,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -198,7 +273,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -215,7 +292,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -232,7 +311,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -249,7 +330,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -266,7 +349,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -283,7 +368,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -300,7 +387,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -317,7 +406,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -334,7 +425,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -351,7 +444,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -368,7 +463,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -385,7 +482,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -402,7 +501,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -419,7 +520,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -436,7 +539,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -453,7 +558,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -470,7 +577,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -487,7 +596,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -504,7 +615,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -521,7 +634,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -538,7 +653,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -555,7 +672,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -572,7 +691,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -589,7 +710,9 @@ fun HomeScreen(navController: NavHostController, viewModel: BreastCancerViewMode
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number
                     ),
-                    modifier = Modifier.fillMaxWidth().border(2.dp, Color(0xFFED5AB3), shape =  RoundedCornerShape(20.dp))
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(2.dp, Color(0xFFED5AB3), shape = RoundedCornerShape(20.dp))
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
